@@ -12,6 +12,8 @@ router.get('/', async (req, res) => {
       ],
     });
 
+    const accountName = req.session.loggedIn;
+
     const blogs = dbBlogData.map((blog) =>
       blog.get({ plain: true })
       );
@@ -20,6 +22,7 @@ router.get('/', async (req, res) => {
 
       res.render('homepage', {
         blogs,
+        accountName,
       });
     } catch (err) {
     console.log(err);
@@ -27,8 +30,11 @@ router.get('/', async (req, res) => {
   }
 });
 
+const loginPage = true;
 router.get('/login', async (req,res) => {
-  res.render('login')
+  res.render('login', {
+    loginPage
+  })
 })
 
 router.get('/signup', async (req, res) => {
@@ -56,10 +62,11 @@ router.get('/:title', async (req,res) => {
         }
       ],
     });
-
+    const accountName = req.session.loggedIn;
     const blog = dbBlogData.get({ plain: true })
       res.render('account', {
         blog,
+        accountName,
       });
     } catch (err) {
     console.log('Error Here --------->', err);
@@ -81,6 +88,8 @@ router.get('/:title/comment', async (req,res) => {
       ],
     });
 
+    const accountName = req.session.loggedIn;
+
     const blog = dbBlogData.get({ plain: true });
 
     const commentsLoaded = true;
@@ -88,6 +97,7 @@ router.get('/:title/comment', async (req,res) => {
       res.render('comment', {
         blog,
         commentsLoaded,
+        accountName,
       });
     } catch (err) {
     console.log(err);

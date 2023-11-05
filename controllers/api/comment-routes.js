@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     try {
         const commentsdb = await Comments.create({
             blog_id: req.body.blog_id,
-            user_name: req.body.user_name,
+            user_name: req.session.loggedIn,
             comment: req.body.comment,
             comment_date: req.body.comment_date
         });

@@ -10,12 +10,12 @@
 
 <body>
   <header>
-    <h1>Welcome to the Blog Site!</h1>
+    <h1>Welcome to the Blog Site {{accountName}}!</h1>
   </header>
   <nav class="navbar">
     <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
+    {{#if accountName}}
+    <a href="/logout">Logout</a>
     {{else}}
     <a href="/login">Login</a>
     {{/if}}
@@ -31,6 +31,9 @@
   {{/if}}
   {{#if commentsLoaded}}
   <script src="/js/comment.js"></script>
+  {{/if}}
+  {{#if loginPage}}
+  <script src="/js/login.js"></script>
   {{/if}}
 </body>
 

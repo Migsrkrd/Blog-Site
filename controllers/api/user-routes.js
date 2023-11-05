@@ -22,30 +22,31 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
-  try{
-    const dbUserData = await Users.findOne({
-      where: {
-      email: req.body.email,
-      password: req.body.password,
-      }
-    });
-    req.session.save(() => {
-      req.session.loggedIn = true;
-      res.status(200).json(dbUserData);
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-})
+// router.post('/login', async (req, res) => {
+//   try{
+//     const dbUserData = await Users.findOne({
+//       where: {
+//       email: req.body.email,
+//       password: req.body.password,
+//       }
+//     });
+//     req.session.save(() => {
+//       req.session.loggedIn = true;
+//       res.status(200).json(dbUserData);
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// })
 
 // Login
 router.post('/login', async (req, res) => {
   try {
-    const dbUserData = await User.findOne({
+    const dbUserData = await Users.findOne({
       where: {
         email: req.body.email,
+        password: req.body.password,
       },
     });
 
@@ -53,24 +54,13 @@ router.post('/login', async (req, res) => {
       res
         .status(400)
         .json({ message: 'Incorrect email or password. Please try again!' });
-      return;
-    }
-
-    const validPassword = await dbUserData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
+        alert('Incorrect email or password. Please try again!')
       return;
     }
 
     req.session.save(() => {
-      req.session.loggedIn = true;
-
-      res
-        .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
+      req.session.loggedIn = dbUserData.user_name;
+      res.status(200).json({ user: dbUserData, message: 'You are now logged in!', loggedIn: req.session.loggedIn });
     });
   } catch (err) {
     console.log(err);
