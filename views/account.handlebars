@@ -1,0 +1,24 @@
+<div class="singlepost">
+    <div class="single">
+        <h2 class="blogHeader">{{blog.title}}</h2>
+        <div class="info">
+            <p class="blogAuthor">Written by {{blog.User.user_name}}</p>
+            <p class="date">Posted on {{format_date blog.blog_date}}</p>
+        </div>
+    </div>
+    <a href="/{{blog.title}}/comment">
+        <button class="commentbtn">Comment</button>
+    </a>
+    <p class="singlecontent">{{blog.content}}</p>
+    <div class="comment-section">
+        <h3>Comments</h3>
+        <ul>
+            {{#if blog.Comments}}
+            {{#each blog.Comments}}
+            <li><span class="comment-bullet">{{user_name}}: Posted on {{ format_date comment_date}}:</span> {{comment}}
+            </li>
+            {{/each}}
+            {{/if}}
+        </ul>
+    </div>
+</div>

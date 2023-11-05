@@ -1,9 +1,12 @@
-{{#each users}}
+{{#each blogs}}
 <div class="post">
-    <h2>{{user_name}}</h2>
-    {{#each BlogPosts}}
-    <p class="date">Posted on {{format_date blog_date}}</p>
-    <p>{{content}}</p>
-    {{/each}}
+    <a href="/{{title}}">
+    <button>
+        <div>
+            <h2>{{title}}</h2>
+            <p>Posted on {{format_date blog_date}}</p>
+        </div>
+        </button>
+    </a>
 </div>
 {{/each}}

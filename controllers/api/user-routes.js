@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Users } = require('../../models');
+const { findAll } = require('../../models/users');
 
 // CREATE new user
 router.post('/', async (req, res) => {
@@ -23,7 +24,7 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try{
-    const dbUserData = await User.create({
+    const dbUserData = await User.findOne({
       user_name: req.body.username,
       email: req.body.email,
       password: req.body.password,
@@ -75,6 +76,16 @@ router.post('/login', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/', async (req,res) => {
+  try{
+    const usersdb = await Users.findAll();
+    res.status(200).json(usersdb)
+  } catch (err){
+    console.error(err);
+    res.status(500).json(err);
+  }
+})
 
 // Logout
 router.post('/logout', (req, res) => {

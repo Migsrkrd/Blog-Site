@@ -1,25 +1,25 @@
 const router = require('express').Router();
-const { Users, BlogPosts } = require('../models');
+const { Users, BlogPosts, Comments } = require('../models');
 
 router.get('/', async (req, res) => {
   try {
-    const dbUserData = await Users.findAll({
+    const dbBlogData = await BlogPosts.findAll({
       include: [
         {
-          model: BlogPosts,
-          attributes: ['content', 'blog_date'],
+          model: Users,
+          attributes: ['user_name'],
         },
       ],
     });
 
-    const users = dbUserData.map((user) =>
-      user.get({ plain: true })
+    const blogs = dbBlogData.map((blog) =>
+      blog.get({ plain: true })
       );
       
-      console.log(users)
+      console.log(blogs)
 
       res.render('homepage', {
-        users,
+        blogs,
       });
     } catch (err) {
     console.log(err);
@@ -39,34 +39,58 @@ router.get('/dashboard', async (req,res) => {
   res.render('dashboard')
 })
 
-// router.get('/dashboard', async (req, res) => {
-//   try{
-//     const dbUserData = await Users.findOne({
-//       where: {
-//         email: 
-//       }
-//     },{
-//       include: [
-//         {
-//           model: BlogPosts,
-//           attributes: ['content', 'blog_date'],
-//         },
-//       ],
-//     });
+router.get('/:title', async (req,res) => {
+  try {
+    const dbBlogData = await BlogPosts.findOne({
+      where: {
+        title: req.params.title
+      },
+      include: [
+        {
+          model: Users,
+          attributes: ['user_name'],
+        },
+        {
+          model: Comments,
+          attributes: ['user_name', 'comment', "comment_date"],
+        }
+      ],
+    });
 
-//     const users = dbUserData.map((user) =>
-//       user.get({ plain: true })
-//       );
-      
-//       console.log(users)
+    const blog = dbBlogData.get({ plain: true })
+    console.log(blog);
+      res.render('account', {
+        blog,
+      });
+    } catch (err) {
+    console.log('Error Here --------->', err);
+    res.status(500).json(err);
+  }
+})
 
-//       res.render('homepage', {
-//         users,
-//       });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// })
+router.get('/:title/comment', async (req,res) => {
+  try {
+    const dbBlogData = await BlogPosts.findOne({
+      where: {
+        title: req.params.title
+      },
+      include: [
+        {
+          model: Users,
+          attributes: ['user_name'],
+        },
+      ],
+    });
+
+    const blog = dbBlogData.get({ plain: true })
+      res.render('comment', {
+        blog,
+      });
+    } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
 
 module.exports = router;
