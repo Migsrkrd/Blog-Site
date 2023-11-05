@@ -1,6 +1,7 @@
 <div class="singlepost">
     <div class="single">
         <h2 class="blogHeader">{{blog.title}}</h2>
+        <span class="Id">{{blog.id}}</span>
         <div class="info">
             <p class="blogAuthor">Written by {{blog.User.user_name}}</p>
             <p class="date">Posted on {{format_date blog.blog_date}}</p>
@@ -9,8 +10,10 @@
     <form class="comment-form">
       <div class="comment">
         <label class="commentLbl">Comment:</label>
+        <label >Name:</label>
+        <input type="text" id="username-input">
         <input type="text" id="comment-input" width="100%" height="100px"/>
-        <button>Add Comment</button>
+        <button id="addComment">Add Comment</button>
       </div>
     </form>
 </div>

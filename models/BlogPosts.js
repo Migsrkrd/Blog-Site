@@ -17,6 +17,7 @@ BlogPosts.init(
         title: {
             type: DataTypes.STRING,
             notNull: true,
+            unique: true,
         },
         content: {
             type: DataTypes.STRING,

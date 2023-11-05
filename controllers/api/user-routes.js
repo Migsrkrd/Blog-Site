@@ -24,13 +24,14 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try{
-    const dbUserData = await User.findOne({
-      user_name: req.body.username,
+    const dbUserData = await Users.findOne({
+      where: {
       email: req.body.email,
       password: req.body.password,
+      }
     });
     req.session.save(() => {
-      req.session.loggedIn = dbUserData.user_name;
+      req.session.loggedIn = true;
       res.status(200).json(dbUserData);
     });
   } catch (err) {

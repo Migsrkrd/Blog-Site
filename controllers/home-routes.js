@@ -58,7 +58,6 @@ router.get('/:title', async (req,res) => {
     });
 
     const blog = dbBlogData.get({ plain: true })
-    console.log(blog);
       res.render('account', {
         blog,
       });
@@ -82,9 +81,13 @@ router.get('/:title/comment', async (req,res) => {
       ],
     });
 
-    const blog = dbBlogData.get({ plain: true })
+    const blog = dbBlogData.get({ plain: true });
+
+    const commentsLoaded = true;
+
       res.render('comment', {
         blog,
+        commentsLoaded,
       });
     } catch (err) {
     console.log(err);
