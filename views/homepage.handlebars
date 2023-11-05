@@ -1,0 +1,9 @@
+{{#each users}}
+<div class="post">
+    <h2>{{user_name}}</h2>
+    {{#each BlogPosts}}
+    <p class="date">Posted on {{format_date blog_date}}</p>
+    <p>{{content}}</p>
+    {{/each}}
+</div>
+{{/each}}

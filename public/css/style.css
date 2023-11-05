@@ -1,0 +1,97 @@
+:root {
+--primary: blue;
+--secondary: beige;
+--third: black;
+}
+
+header{
+  padding: 50px;
+  text-align: center;
+  background: var(--primary);
+  border: none;
+  color: var(--secondary);
+  font-size: 50px;
+}
+
+body {
+  background: var(--secondary);
+}
+
+.navbar {
+  background: var(--third);
+  padding: 20px;
+}
+
+.navbar a {
+  color: var(--primary);
+  font-size: 25px;
+  font-weight: bold;
+  border: 2px solid var(--primary);
+  background: var(--secondary);
+  padding: 10px;
+  margin: 10px;
+}
+
+.navbar a:hover{
+  border: 2px solid var(--secondary);
+  color: var(--secondary);
+  background: var(--primary);
+}
+
+.post {
+  border: 2px solid var(--third);
+  padding: 10px;
+  margin: 20px;
+}
+.post h2 {
+  display: flex;
+  font-size: 20px;
+  background: var(--primary);
+  color: var(--secondary);
+  width: 50%;
+  padding: 10px;
+}
+
+.post p{
+  color: var(--third);
+}
+
+.post .date {
+  text-decoration: underline;
+}
+
+.page {
+  display: flex;
+  background: var(--primary);
+  justify-content: center;
+}
+
+.login, .signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--secondary);
+  margin: 100px;
+  padding: 20px;
+  border: 3px solid var(--third);
+}
+.login h2, .signup h2 {
+  font-size: 50px;
+}
+
+.email, .password, .username{
+  margin: 10px;
+}
+
+.dashboardHeader {
+  padding: 50px;
+  background: var(--third);
+}
+
+.dashboardHeader h2 {
+  color: var(--primary);
+  font-size: 100px;
+  text-shadow: 3px 3px 5px var(--secondary);
+  text-align: center;
+}
+
