@@ -6,12 +6,12 @@
 }
 
 header{
-  padding: 50px;
+  padding: 10px 50px 10px 50px;
   text-align: center;
   background: var(--primary);
   border: none;
   color: var(--secondary);
-  font-size: 50px;
+  font-size: 30px;
 }
 
 body {
@@ -23,7 +23,7 @@ body {
   padding: 20px;
 }
 
-.navbar a {
+.navbar a, #logout, .login button, .signup button, .updatebtn, .deletebtn, .deletePage button {
   color: var(--primary);
   font-size: 25px;
   font-weight: bold;
@@ -31,9 +31,11 @@ body {
   background: var(--secondary);
   padding: 10px;
   margin: 10px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.navbar a:hover{
+.navbar a:hover, #logout:hover, .login button:hover, .signup button:hover, .updatebtn:hover, .deletebtn:hover, .deletePage button:hover{
   border: 2px solid var(--secondary);
   color: var(--secondary);
   background: var(--primary);
@@ -131,7 +133,7 @@ body {
   margin: 30px;
 }
 
-.login{
+.login, .signup{
   border: 2px solid var(--third);
   padding: 20px;
   background: var(--fourth);
@@ -139,24 +141,26 @@ body {
   box-shadow: 4px 4px 5px var(--third);
 }
 
-.login h2{
+.login h2, .signup h2{
   font-size: 50px;
 }
 
-.login label, .login input, .login button {
+.login label, .login input, .login button, .signup label, .signup input, .signup button {
   font-size: 20px;
   font-weight: bold;
   margin: 5px;
 }
 
+
+
 .dashboardHeader {
-  padding: 50px;
+  padding: 1px;
   background: var(--third);
 }
 
 .dashboardHeader h2 {
   color: var(--primary);
-  font-size: 100px;
+  font-size: 60px;
   text-shadow: 3px 3px 5px var(--secondary);
   text-align: center;
 }
@@ -189,3 +193,102 @@ body {
 .Id {
   display: none;
 }
+
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  
+}
+
+.individual{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.yourInfo {
+  text-align: center;
+  width: 200px;
+  border: 3px solid var(--third);
+  margin: 20px;
+  padding: 20px;
+  background: var(--fourth);
+  color: var(--third);
+}
+
+.yourInfo:hover {
+  color: var(--fourth);
+  background: var(--third);
+  transition: 0.3s;
+}
+
+.yourInfo h3 {
+  font-size: 30px;
+}
+
+.yourInfo p{
+  font-size: 20px;
+}
+
+.yourBlogsTitle {
+  text-align: center;
+  border: 3px solid var(--third);
+  padding: 20px;
+  font-size: 50px;
+  margin: 20px 200px 20px 200px;
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.yourlinks{
+  text-decoration: none;
+}
+
+.noBlogs {
+  font-size: 30px;
+}
+
+.newBlogPost, .updateBlogPost {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  align-items: center;
+  border: 2px solid var(--primary);
+  padding: 50px;
+  background-color: var(--fourth);
+}
+
+#newContent, #updatedContent {
+  width: 700px;
+  height: 700px;
+  font-size: large;
+  padding: 10px;
+}
+
+#newTitle, #updatedTitle{
+  font-size: large;
+  padding: 10px;
+}
+
+.newBlogPost button, .updateBlogPost button {
+  font-size: 50px;
+  margin-top: 20px;
+}
+
+.deletePage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.deletePage h2{
+  font-size: 40px;
+}
+
+.deletePage h3{
+  font-size: 25px;
+}
+

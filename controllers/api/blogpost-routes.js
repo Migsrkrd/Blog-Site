@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { BlogPosts, Comments } = require('../../models');
+const { BlogPosts, Comments, Users } = require('../../models');
 const { findAll } = require('../../models/BlogPosts');
 
 // CREATE new user
@@ -20,9 +20,54 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    // try {
-    //     const blogsdb = await BlogPosts.create()
-    // }
+    try{
+        const currentuser = await Users.findOne({
+            where: {
+                user_name: req.session.loggedIn
+            }
+        })
+        const newBlogPost = await BlogPosts.create({
+            title: req.body.title,
+            content: req.body.content,
+            user_id: currentuser.id,
+            blog_date: req.body.blog_date,
+        });
+        res.status(200).json(newBlogPost)
+    }catch(err){
+        res.status(500).json(err)
+    }
+})
+
+router.put('/:id', async (req,res) => {
+    try{
+        const updatePost = await BlogPosts.update({
+            title: req.body.title,
+            content: req.body.content,
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+        )
+        res.status(200).json(updatePost);
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
+
+router.delete('/:id', async (req,res)=>{
+    try {
+        const findPost = await BlogPosts.findOne({
+          where: {
+            id: req.params.id
+          }
+        });
+        findPost.destroy();
+        res.status(200).json(findPost)
+      }catch(err){
+        res.status(500).json(err);
+      }
 })
 
 module.exports = router;

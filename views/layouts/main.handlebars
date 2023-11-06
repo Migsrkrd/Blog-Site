@@ -10,23 +10,23 @@
 
 <body>
   <header>
-    <h1>Welcome to the Blog Site {{accountName}}!</h1>
+    <h1>Welcome to the Blog Site {{#if accountName}}{{accountName}}{{/if}}!</h1>
   </header>
   <nav class="navbar">
     <a href="/">Home</a>
     {{#if accountName}}
-    <a href="/logout">Logout</a>
+    <button id="logout">Logout</button>
+    <a href="/dashboard">Dashbooard</a>
     {{else}}
     <a href="/login">Login</a>
     {{/if}}
-    <a href="/dashboard">Dashbooard</a>
   </nav>
   <main>
     <div class="gallery">
       {{{body}}}
     </div>
   </main>
-  {{#if loggedIn}}
+  {{#if accountName}}
   <script src="/js/logout.js"></script>
   {{/if}}
   {{#if commentsLoaded}}
@@ -34,6 +34,18 @@
   {{/if}}
   {{#if loginPage}}
   <script src="/js/login.js"></script>
+  {{/if}}
+  {{#if signupPage}}
+  <script src="/js/signup.js"></script>
+  {{/if}}
+  {{#if newBlog}}
+  <script src="/js/create.js"></script>
+  {{/if}}
+  {{#if updatePage}}
+  <script src="/js/updatePost.js"></script>
+  {{/if}}
+  {{#if deleteActive}}
+  <script src="/js/delete.js"></script>
   {{/if}}
 </body>
 

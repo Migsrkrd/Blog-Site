@@ -1,3 +1,33 @@
+<nav class="navbar">
+    <a href="/create/new/blogpost">Create</a>
+</nav>
 <div class="dashboardHeader">
     <h2> Your Dashboard!</h2>
 </div>
+{{#if userBlogs}}
+<div>
+    <h2 class="yourBlogsTitle">{{userBlogs.user_name}}'s blogs!</h2>
+    <div class="flexbox">
+        {{#if userBlogs.BlogPosts}}
+        {{#each userBlogs.BlogPosts}}
+        <div class="individual">
+            <a href="/{{this.title}}" class="yourlinks">
+                <div class="yourInfo">
+                    <h3>{{this.title}}</h3>
+                    <p>Posted on: {{format_date this.blog_date}}</p>
+                </div>
+            </a>
+            <a href='/update/your/post/{{this.id}}'>
+            <button class="updatebtn">Update</button>
+            </a>
+            <a href="/are/you/sure/you/want/to/do/this/{{this.id}}">
+            <button class="deletebtn">Delete</button>
+            </a>
+        </div>
+        {{/each}}
+        {{else}}
+        <h4 class="noBlogs">Its a little quiet in here! Let's get started on your first Blog!</h4>
+        {{/if}}
+    </div>
+</div>
+{{/if}}
