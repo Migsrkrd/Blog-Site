@@ -20,7 +20,7 @@ BlogPosts.init(
             unique: true,
         },
         content: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             notNull: true,
         },
         user_id: {
