@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Users, BlogPosts } = require('../../models');
 const Comment = require('../../models/comments');
 const { findAll } = require('../../models/users');
+const bcrypt = require('bcrypt')
 
 // CREATE new user
 router.post('/', async (req, res) => {
@@ -28,7 +29,7 @@ router.post('/login', async (req, res) => {
     const dbUserData = await Users.findOne({
       where: {
         email: req.body.email,
-        password: req.body.password,
+        password: bcrypt.hash(req.body.password,10)
       },
     });
 
