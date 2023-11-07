@@ -56,9 +56,11 @@ router.get('/dashboard', async (req,res) => {
     });
     const userBlogs = userdb.get({ plain: true })
     const accountName = req.session.loggedIn;
+    const addCreate = true;
     res.render('dashboard',{
       userBlogs,
       accountName,
+      addCreate,
     })
   } catch (err) {
     res.status(500).json(err)
@@ -92,7 +94,7 @@ router.get('/:title', async (req,res) => {
           accountName,
         });
       } else {
-        res.render('login');
+        res.redirect('/login');
       }
     } else {
       // Handle the case where no record was found with the specified title
@@ -138,8 +140,10 @@ router.get('/:title/comment', async (req,res) => {
 router.get('/create/new/blogpost', async (req,res) => {
   try{
     const newBlog = true;
+    const accountName = req.session.loggedIn;
     res.render('create',{
       newBlog,
+      accountName
     });
   } catch(err){
     res.status(500).json(err)

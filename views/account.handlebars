@@ -15,8 +15,16 @@
         <ul>
             {{#if blog.Comments}}
             {{#each blog.Comments}}
-            <li><span class="comment-bullet">{{user_name}}: Posted on {{ format_date comment_date}}:</span> {{comment}}
-            </li>
+            <div class="comments">
+                <div class="comment-calls">
+                    <h3>{{user_name}}</h3>
+                    <h4> Posted on {{ format_date comment_date}}:</h4>
+                </div>
+                <div class="comment-content">
+                    <h3>{{comment}}</h3>
+                </div>
+            </div>
+
             {{/each}}
             {{/if}}
         </ul>
