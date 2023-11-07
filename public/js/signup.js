@@ -1,3 +1,4 @@
+//create a function to sign up, add new user to users data, and redirect to the homepage if succesful
 const signupFormHandler = async (event) => {
     event.preventDefault();
   

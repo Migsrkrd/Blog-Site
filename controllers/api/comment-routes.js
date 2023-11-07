@@ -2,8 +2,8 @@ const router = require('express').Router();
 const { Comments, BlogPosts, Users } = require('../../models');
 const { findAll } = require('../../models/comments');
 
-// CREATE new user
 
+//get all comments data
 router.get('/', async (req, res) => {
     try {
         const usersdb = await Comments.findAll({
@@ -16,11 +16,11 @@ router.get('/', async (req, res) => {
         });
         res.status(200).json(usersdb)
     } catch (err) {
-        console.error(err);
         res.status(500).json(err);
     }
 })
 
+//add to comments data
 router.post('/', async (req, res) => {
     try {
         const commentsdb = await Comments.create({
@@ -32,7 +32,6 @@ router.post('/', async (req, res) => {
             res.status(200).json(commentsdb)
 
     } catch(err) {
-        console.error(err);
         res.status(500).json({message: 'server error'})
     }
 })

@@ -1,3 +1,4 @@
+//create a function that deletes the post you are currently on
 const deleteBlogPost = async (event) => {
     event.preventDefault();
     const id = document.querySelector('.Id').textContent;

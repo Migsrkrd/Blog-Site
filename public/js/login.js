@@ -1,3 +1,4 @@
+//create a function that takes in the input values of the login page and uses the post route to check if it is valid, then redirect to home page if successful
 const loginFormHandler = async (event) => {
   event.preventDefault();
 

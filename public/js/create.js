@@ -1,3 +1,4 @@
+//create a function that takes in the input data from the create page and add to the blogposts data, then redirects to the dashboard
 const newBlog = async (event) => {
     event.preventDefault();
     const title = document.querySelector('#newTitle').value.trim();
@@ -9,7 +10,6 @@ const newBlog = async (event) => {
         body: JSON.stringify({title, content, blog_date}),
         headers: { 'Content-Type': 'application/json' },
       });
-      console.log(response);
       if (response.ok) {
         document.location.replace(`/dashboard`);
       } else {

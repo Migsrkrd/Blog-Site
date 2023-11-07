@@ -1,3 +1,4 @@
+//create a function that fetchs a specific blogpost, enters it into the textareas in the update page, and allows you to update to the data
 const updateBlog = async (event) => {
     event.preventDefault();
     const title = document.querySelector('#updatedTitle').value.trim();

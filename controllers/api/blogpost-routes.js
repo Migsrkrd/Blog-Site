@@ -2,8 +2,8 @@ const router = require('express').Router();
 const { BlogPosts, Comments, Users } = require('../../models');
 const { findAll } = require('../../models/BlogPosts');
 
-// CREATE new user
 
+//get blogs data
 router.get('/', async (req, res) => {
     try {
         const usersdb = await BlogPosts.findAll({
@@ -14,11 +14,12 @@ router.get('/', async (req, res) => {
         });
         res.status(200).json(usersdb)
     } catch (err) {
-        console.error(err);
         res.status(500).json(err);
     }
 })
 
+
+//add to blogposts data where your username is
 router.post('/', async (req, res) => {
     try{
         const currentuser = await Users.findOne({
@@ -38,6 +39,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+//update a blog posts
 router.put('/:id', async (req,res) => {
     try{
         const updatePost = await BlogPosts.update({
@@ -56,6 +58,7 @@ router.put('/:id', async (req,res) => {
     }
 })
 
+//delete a blog post
 router.delete('/:id', async (req,res)=>{
     try {
         const findPost = await BlogPosts.findOne({

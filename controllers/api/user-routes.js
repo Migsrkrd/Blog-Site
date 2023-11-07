@@ -4,7 +4,7 @@ const Comment = require('../../models/comments');
 const { findAll } = require('../../models/users');
 const bcrypt = require('bcrypt')
 
-// CREATE new user
+// create new user
 router.post('/', async (req, res) => {
   try {
     const dbUserData = await Users.create({
@@ -19,11 +19,11 @@ router.post('/', async (req, res) => {
       res.status(200).json(dbUserData);
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
 
+//call for log in functionality
 router.post('/login', async (req, res) => {
   try {
     const dbUserData = await Users.findOne({
@@ -31,9 +31,7 @@ router.post('/login', async (req, res) => {
         email: req.body.email,
       },
     });
-
-    
-
+//if there isnt a user with that email, render error
     if (!dbUserData) {
       res
         .status(400)
@@ -42,8 +40,9 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+//check if the password that was entered matchs in the db
     const validPassword = await dbUserData.checkPassword(req.body.password);
-
+//if it doesnt match, render error
     if(!validPassword) {
       res
       .status(400)
@@ -57,11 +56,11 @@ router.post('/login', async (req, res) => {
       res.status(200).json({ user: dbUserData, message: 'You are now logged in!', loggedIn: req.session.loggedIn });
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
 
+//get all users with their associated blog post titles and dates
 router.get('/', async (req,res) => {
   try{
     const usersdb = await Users.findAll({
@@ -72,12 +71,11 @@ router.get('/', async (req,res) => {
     });
     res.status(200).json(usersdb)
   } catch (err){
-    console.error(err);
     res.status(500).json(err);
   }
 })
 
-// Logout
+// Logout call
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
   req.session.destroy();

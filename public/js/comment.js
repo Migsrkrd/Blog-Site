@@ -1,4 +1,4 @@
-// const helper = require('../../utils/helpers');
+//create a function that takes in values of comment area inputs and posts them to comments data, displays them on the title link, and redirects you to the title link page
 
 const newComment = async (event) => {
   event.preventDefault();
@@ -12,7 +12,6 @@ const newComment = async (event) => {
       body: JSON.stringify({blog_id, comment, comment_date}),
       headers: { 'Content-Type': 'application/json' },
     });
-    console.log(response);
     if (response.ok) {
       document.location.replace(`/${title}`);
     } else {
