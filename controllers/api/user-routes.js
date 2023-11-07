@@ -29,9 +29,10 @@ router.post('/login', async (req, res) => {
     const dbUserData = await Users.findOne({
       where: {
         email: req.body.email,
-        password: bcrypt.hash(req.body.password,10)
       },
     });
+
+    
 
     if (!dbUserData) {
       res
@@ -39,6 +40,16 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
         alert('Incorrect email or password. Please try again!')
       return;
+    }
+
+    const validPassword = await dbUserData.checkPassword(req.body.password);
+
+    if(!validPassword) {
+      res
+      .status(400)
+      .json({ message: 'Incorrect email or password. Please try again!' });
+      alert('Incorrect email or password. Please try again!')
+    return;
     }
 
     req.session.save(() => {
